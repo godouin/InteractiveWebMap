@@ -39,14 +39,14 @@
         <script src="js/tailDT.js"></script>
 <script src="js/nouislider.min.js"></script>
 <script src="js/wNumb.js"></script>
-        <script src="data/TabangBorder_2.js"></script>
+        <script src="data/CentroSurBorder_2.js"></script>
         <script src="data/BarangayHealthUnit_3.js"></script>
         <script src="data/RiskLevelbyGeographicalLocation_4.js"></script>
         <script src="data/TotalRiskLevel_5.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:20, minZoom:1
-        }).fitBounds([[17.80741747081096,121.5466408205673],[17.81911088953728,121.56147899060163]]);
+        }).fitBounds([[17.863641449439324,121.55581451228309],[17.887020132638522,121.58549085235175]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -78,17 +78,20 @@
         });
         layer_OpenStreetMap_0;
         map.addLayer(layer_OpenStreetMap_0);
-        map.createPane('pane_TabangArea_1');
-        map.getPane('pane_TabangArea_1').style.zIndex = 401;
-        var img_TabangArea_1 = 'data/TabangArea_1.png';
-        var img_bounds_TabangArea_1 = [[17.804233333910815,121.54650516257638],[17.82316225779405,121.56659549432406]];
-        var layer_TabangArea_1 = new L.imageOverlay(img_TabangArea_1,
-                                              img_bounds_TabangArea_1,
-                                              {pane: 'pane_TabangArea_1'});
-        bounds_group.addLayer(layer_TabangArea_1);
-        map.addLayer(layer_TabangArea_1);
-        function pop_TabangBorder_2(feature, layer) {
+        map.createPane('pane_CentroSurArea_1');
+        map.getPane('pane_CentroSurArea_1').style.zIndex = 401;
+        var img_CentroSurArea_1 = 'data/CentroSurArea_1.png';
+        var img_bounds_CentroSurArea_1 = [[17.856144618711863,121.56012045751889],[17.884955276810402,121.57611081991901]];
+        var layer_CentroSurArea_1 = new L.imageOverlay(img_CentroSurArea_1,
+                                              img_bounds_CentroSurArea_1,
+                                              {pane: 'pane_CentroSurArea_1'});
+        bounds_group.addLayer(layer_CentroSurArea_1);
+        map.addLayer(layer_CentroSurArea_1);
+        function pop_CentroSurBorder_2(feature, layer) {
             var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -96,9 +99,24 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_TabangBorder_2_0() {
+        function style_CentroSurBorder_2_0() {
             return {
-                pane: 'pane_TabangBorder_2',
+                pane: 'pane_CentroSurBorder_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(173,205,255,0.08235294117647059)',
+                interactive: false,
+            }
+        }
+        function style_CentroSurBorder_2_1() {
+            return {
+                pane: 'pane_CentroSurBorder_2',
                 opacity: 1,
                 color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
@@ -109,20 +127,20 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_TabangBorder_2');
-        map.getPane('pane_TabangBorder_2').style.zIndex = 402;
-        map.getPane('pane_TabangBorder_2').style['mix-blend-mode'] = 'normal';
-        var layer_TabangBorder_2 = new L.geoJson(json_TabangBorder_2, {
+        map.createPane('pane_CentroSurBorder_2');
+        map.getPane('pane_CentroSurBorder_2').style.zIndex = 402;
+        map.getPane('pane_CentroSurBorder_2').style['mix-blend-mode'] = 'normal';
+        var layer_CentroSurBorder_2 = new L.geoJson.multiStyle(json_CentroSurBorder_2, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_TabangBorder_2',
-            layerName: 'layer_TabangBorder_2',
-            pane: 'pane_TabangBorder_2',
-            onEachFeature: pop_TabangBorder_2,
-            style: style_TabangBorder_2_0,
+            dataVar: 'json_CentroSurBorder_2',
+            layerName: 'layer_CentroSurBorder_2',
+            pane: 'pane_CentroSurBorder_2',
+            onEachFeature: pop_CentroSurBorder_2,
+            styles: [style_CentroSurBorder_2_0,style_CentroSurBorder_2_1,]
         });
-        bounds_group.addLayer(layer_TabangBorder_2);
-        map.addLayer(layer_TabangBorder_2);
+        bounds_group.addLayer(layer_CentroSurBorder_2);
+        map.addLayer(layer_CentroSurBorder_2);
         function pop_BarangayHealthUnit_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -135,7 +153,7 @@
         function style_BarangayHealthUnit_3_0() {
             return {
                 pane: 'pane_BarangayHealthUnit_3',
-                radius: 5.6,
+                radius: 10.4,
                 opacity: 1,
                 color: 'rgba(227,26,28,1.0)',
                 dashArray: '',
@@ -151,7 +169,7 @@
         function style_BarangayHealthUnit_3_1() {
             return {
                 pane: 'pane_BarangayHealthUnit_3',
-                radius: 3.23076,
+                radius: 6.0,
                 opacity: 1,
                 color: 'rgba(227,26,28,1.0)',
                 dashArray: '',
@@ -193,14 +211,14 @@
         function pop_RiskLevelbyGeographicalLocation_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2"><strong>Distance to nearest healthcare providers (meters)</strong><br />' + (feature.properties['Distance'] !== null ? autolinker.link(feature.properties['Distance'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>Distance</strong><br />' + (feature.properties['Distance'] !== null ? autolinker.link(feature.properties['Distance'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
         function style_RiskLevelbyGeographicalLocation_4_0(feature) {
-            if (feature.properties['Distance'] >= 23.026098 && feature.properties['Distance'] <= 346.629905 ) {
+            if (feature.properties['Distance'] >= 18.081347 && feature.properties['Distance'] <= 477.624891 ) {
                 return {
                 pane: 'pane_RiskLevelbyGeographicalLocation_4',
                 radius: 4.0,
@@ -216,7 +234,7 @@
                 interactive: true,
             }
             }
-            if (feature.properties['Distance'] >= 346.629905 && feature.properties['Distance'] <= 670.233712 ) {
+            if (feature.properties['Distance'] >= 477.624891 && feature.properties['Distance'] <= 937.168436 ) {
                 return {
                 pane: 'pane_RiskLevelbyGeographicalLocation_4',
                 radius: 4.0,
@@ -232,7 +250,7 @@
                 interactive: true,
             }
             }
-            if (feature.properties['Distance'] >= 670.233712 && feature.properties['Distance'] <= 993.837520 ) {
+            if (feature.properties['Distance'] >= 937.168436 && feature.properties['Distance'] <= 1396.711980 ) {
                 return {
                 pane: 'pane_RiskLevelbyGeographicalLocation_4',
                 radius: 4.0,
@@ -272,10 +290,10 @@
         function pop_TotalRiskLevel_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2"><strong>Sex</strong><br />' + (feature.properties['Sex'] !== null ? autolinker.link(feature.properties['Sex'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>Age</strong><br />' + (feature.properties['Age'] !== null ? autolinker.link(feature.properties['Age'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Age</strong><br />' + (feature.properties['Age'] !== null ? autolinker.link(feature.properties['Age'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>Sex</strong><br />' + (feature.properties['Sex'] !== null ? autolinker.link(feature.properties['Sex'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2"><strong>Family History</strong><br />' + (feature.properties['Family History'] !== null ? autolinker.link(feature.properties['Family History'].toLocaleString()) : '') + '</td>\
@@ -299,23 +317,23 @@
                         <td colspan="2"><strong>Drinks alcohol</strong><br />' + (feature.properties['Drinks alcohol'] !== null ? autolinker.link(feature.properties['Drinks alcohol'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>CVD Associated Symptoms</strong><br />' + (feature.properties['CVD Associated Symptoms'] !== null ? autolinker.link(feature.properties['CVD Associated Symptoms'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <td colspan="2"><strong>CVD-Comorbid Associated Symptoms</strong><br />' + (feature.properties['CVD-Comorbid Associated Symptoms'] !== null ? autolinker.link(feature.properties['CVD-Comorbid Associated Symptoms'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Number of CVD-associated Symptoms</strong><br />' + (feature.properties['Number of CVD-associated Symptoms'] !== null ? autolinker.link(feature.properties['Number of CVD-associated Symptoms'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>CVD Associated Symptoms</strong><br />' + (feature.properties['CVD Associated Symptoms'] !== null ? autolinker.link(feature.properties['CVD Associated Symptoms'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Number of CVD-comorbid Symptoms</strong><br />' + (feature.properties['Number of CVD-comorbid Symptoms'] !== null ? autolinker.link(feature.properties['Number of CVD-comorbid Symptoms'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>Number of CVD-associated symptoms experienced</strong><br />' + (feature.properties['Number of CVD-associated symptoms experienced'] !== null ? autolinker.link(feature.properties['Number of CVD-associated symptoms experienced'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Number of CVD-comorbid symptoms experienced</strong><br />' + (feature.properties['Number of CVD-comorbid symptoms experienced'] !== null ? autolinker.link(feature.properties['Number of CVD-comorbid symptoms experienced'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
         function style_TotalRiskLevel_5_0(feature) {
-            if (feature.properties['q2wHide_Total'] >= 11.000000 && feature.properties['q2wHide_Total'] <= 19.333333 ) {
+            if (feature.properties['q2wHide_Total'] >= 9.000000 && feature.properties['q2wHide_Total'] <= 22.333333 ) {
                 return {
                 pane: 'pane_TotalRiskLevel_5',
                 radius: 4.0,
@@ -331,7 +349,7 @@
                 interactive: true,
             }
             }
-            if (feature.properties['q2wHide_Total'] >= 19.333333 && feature.properties['q2wHide_Total'] <= 27.666667 ) {
+            if (feature.properties['q2wHide_Total'] >= 22.333333 && feature.properties['q2wHide_Total'] <= 30.666667 ) {
                 return {
                 pane: 'pane_TotalRiskLevel_5',
                 radius: 4.0,
@@ -347,7 +365,7 @@
                 interactive: true,
             }
             }
-            if (feature.properties['q2wHide_Total'] >= 27.666667 && feature.properties['q2wHide_Total'] <= 36.000000 ) {
+            if (feature.properties['q2wHide_Total'] >= 30.666667 && feature.properties['q2wHide_Total'] <= 49.000000 ) {
                 return {
                 pane: 'pane_TotalRiskLevel_5',
                 radius: 4.0,
@@ -385,7 +403,7 @@
         bounds_group.addLayer(layer_TotalRiskLevel_5);
         map.addLayer(layer_TotalRiskLevel_5);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Total Risk Level<br /><table><tr><td style="text-align: center;"><img src="legend/TotalRiskLevel_5_Low0.png" /></td><td>Low</td></tr><tr><td style="text-align: center;"><img src="legend/TotalRiskLevel_5_Moderate1.png" /></td><td>Moderate</td></tr><tr><td style="text-align: center;"><img src="legend/TotalRiskLevel_5_High2.png" /></td><td>High</td></tr></table>': layer_TotalRiskLevel_5,'Risk Level by Geographical Location<br /><table><tr><td style="text-align: center;"><img src="legend/RiskLevelbyGeographicalLocation_4_Low0.png" /></td><td>Low</td></tr><tr><td style="text-align: center;"><img src="legend/RiskLevelbyGeographicalLocation_4_Moderate1.png" /></td><td>Moderate</td></tr><tr><td style="text-align: center;"><img src="legend/RiskLevelbyGeographicalLocation_4_High2.png" /></td><td>High</td></tr></table>': layer_RiskLevelbyGeographicalLocation_4,'<img src="legend/BarangayHealthUnit_3.png" /> Barangay Health Unit': layer_BarangayHealthUnit_3,'<img src="legend/TabangBorder_2.png" /> Tabang Border': layer_TabangBorder_2,"Tabang Area": layer_TabangArea_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'Total Risk Level<br /><table><tr><td style="text-align: center;"><img src="legend/TotalRiskLevel_5_Low0.png" /></td><td>Low</td></tr><tr><td style="text-align: center;"><img src="legend/TotalRiskLevel_5_Moderate1.png" /></td><td>Moderate</td></tr><tr><td style="text-align: center;"><img src="legend/TotalRiskLevel_5_High2.png" /></td><td>High</td></tr></table>': layer_TotalRiskLevel_5,'Risk Level by Geographical Location<br /><table><tr><td style="text-align: center;"><img src="legend/RiskLevelbyGeographicalLocation_4_Low0.png" /></td><td>Low</td></tr><tr><td style="text-align: center;"><img src="legend/RiskLevelbyGeographicalLocation_4_Moderate1.png" /></td><td>Moderate</td></tr><tr><td style="text-align: center;"><img src="legend/RiskLevelbyGeographicalLocation_4_High2.png" /></td><td>High</td></tr></table>': layer_RiskLevelbyGeographicalLocation_4,'<img src="legend/BarangayHealthUnit_3.png" /> Barangay Health Unit': layer_BarangayHealthUnit_3,'<img src="legend/CentroSurBorder_2.png" /> Centro Sur Border': layer_CentroSurBorder_2,"Centro Sur Area": layer_CentroSurArea_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
         setBounds();
         var mapDiv = document.getElementById('map');
         var row = document.createElement('div');
@@ -406,7 +424,7 @@
         document.getElementById("all").appendChild(col1);
         document.getElementById("all").appendChild(col2);
         col1.appendChild(mapDiv)
-        var Filters = {"Number of CVD-associated Symptoms": "int","Number of CVD-comorbid Symptoms": "int","Distance": "real","Sex": "str","Age": "str","Family History": "str","Physical Activity per week": "str","Considers diet as healthy": "str","Includes fruits and vegetables in regular diet": "str","Unhealthy food consumption per day": "str","Drinks alcohol": "str","Smokes Cigarettes": "str"};
+        var Filters = {"Number of CVD-associated symptoms experienced": "int","Number of CVD-comorbid symptoms experienced": "int","Distance": "real","Sex": "str","Age": "str","Family History": "str","Physical Activity per week": "str","Considers diet as healthy": "str","Includes fruits and vegetables in regular diet": "str","Unhealthy food consumption per day": "str","Drinks alcohol": "str","Smokes Cigarettes": "str"};
         function filterFunc() {
           map.eachLayer(function(lyr){
           if ("options" in lyr && "dataVar" in lyr["options"]){
@@ -498,64 +516,24 @@
         }
             document.getElementById("menu").appendChild(
                 document.createElement("div"));
-            var div_NumberofCVDassociatedSymptoms = document.createElement("div");
-            div_NumberofCVDassociatedSymptoms.id = "div_NumberofCVDassociatedSymptoms";
-            div_NumberofCVDassociatedSymptoms.className = "slider";
-            document.getElementById("menu").appendChild(div_NumberofCVDassociatedSymptoms);
-            var lab_NumberofCVDassociatedSymptoms = document.createElement('div');
-            lab_NumberofCVDassociatedSymptoms.innerHTML  = 'Number of CVD-associated Symptoms: <span id="val_NumberofCVDassociatedSymptoms"></span>';
-            lab_NumberofCVDassociatedSymptoms.className = 'filterlabel';
-            document.getElementById("menu").appendChild(lab_NumberofCVDassociatedSymptoms);
-            var reset_NumberofCVDassociatedSymptoms = document.createElement('div');
-            reset_NumberofCVDassociatedSymptoms.innerHTML = 'clear filter';
-            reset_NumberofCVDassociatedSymptoms.className = 'filterlabel';
-            lab_NumberofCVDassociatedSymptoms.className = 'filterlabel';
-            reset_NumberofCVDassociatedSymptoms.onclick = function() {
-                sel_NumberofCVDassociatedSymptoms.noUiSlider.reset();
+            var div_NumberofCVDassociatedsymptomsexperienced = document.createElement("div");
+            div_NumberofCVDassociatedsymptomsexperienced.id = "div_NumberofCVDassociatedsymptomsexperienced";
+            div_NumberofCVDassociatedsymptomsexperienced.className = "slider";
+            document.getElementById("menu").appendChild(div_NumberofCVDassociatedsymptomsexperienced);
+            var lab_NumberofCVDassociatedsymptomsexperienced = document.createElement('div');
+            lab_NumberofCVDassociatedsymptomsexperienced.innerHTML  = 'Number of CVD-associated symptoms experienced: <span id="val_NumberofCVDassociatedsymptomsexperienced"></span>';
+            lab_NumberofCVDassociatedsymptomsexperienced.className = 'filterlabel';
+            document.getElementById("menu").appendChild(lab_NumberofCVDassociatedsymptomsexperienced);
+            var reset_NumberofCVDassociatedsymptomsexperienced = document.createElement('div');
+            reset_NumberofCVDassociatedsymptomsexperienced.innerHTML = 'clear filter';
+            reset_NumberofCVDassociatedsymptomsexperienced.className = 'filterlabel';
+            lab_NumberofCVDassociatedsymptomsexperienced.className = 'filterlabel';
+            reset_NumberofCVDassociatedsymptomsexperienced.onclick = function() {
+                sel_NumberofCVDassociatedsymptomsexperienced.noUiSlider.reset();
             };
-            document.getElementById("menu").appendChild(reset_NumberofCVDassociatedSymptoms);
-            var sel_NumberofCVDassociatedSymptoms = document.getElementById('div_NumberofCVDassociatedSymptoms');
-            noUiSlider.create(sel_NumberofCVDassociatedSymptoms, {
-                connect: true,
-                start: [0, 4],
-                step: 1,
-                format: wNumb({
-                    decimals: 0,
-                    }),
-                range: {
-                min: 0,
-                max: 4
-                }
-            });
-            sel_NumberofCVDassociatedSymptoms.noUiSlider.on('update', function (values) {
-            filterVals =[];
-            for (value in values){
-            filterVals.push(parseInt(value))
-            }
-            val_NumberofCVDassociatedSymptoms = document.getElementById('val_NumberofCVDassociatedSymptoms');
-            val_NumberofCVDassociatedSymptoms.innerHTML = values.join(' - ');
-                filterFunc()
-            });
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_NumberofCVDcomorbidSymptoms = document.createElement("div");
-            div_NumberofCVDcomorbidSymptoms.id = "div_NumberofCVDcomorbidSymptoms";
-            div_NumberofCVDcomorbidSymptoms.className = "slider";
-            document.getElementById("menu").appendChild(div_NumberofCVDcomorbidSymptoms);
-            var lab_NumberofCVDcomorbidSymptoms = document.createElement('div');
-            lab_NumberofCVDcomorbidSymptoms.innerHTML  = 'Number of CVD-comorbid Symptoms: <span id="val_NumberofCVDcomorbidSymptoms"></span>';
-            lab_NumberofCVDcomorbidSymptoms.className = 'filterlabel';
-            document.getElementById("menu").appendChild(lab_NumberofCVDcomorbidSymptoms);
-            var reset_NumberofCVDcomorbidSymptoms = document.createElement('div');
-            reset_NumberofCVDcomorbidSymptoms.innerHTML = 'clear filter';
-            reset_NumberofCVDcomorbidSymptoms.className = 'filterlabel';
-            lab_NumberofCVDcomorbidSymptoms.className = 'filterlabel';
-            reset_NumberofCVDcomorbidSymptoms.onclick = function() {
-                sel_NumberofCVDcomorbidSymptoms.noUiSlider.reset();
-            };
-            document.getElementById("menu").appendChild(reset_NumberofCVDcomorbidSymptoms);
-            var sel_NumberofCVDcomorbidSymptoms = document.getElementById('div_NumberofCVDcomorbidSymptoms');
-            noUiSlider.create(sel_NumberofCVDcomorbidSymptoms, {
+            document.getElementById("menu").appendChild(reset_NumberofCVDassociatedsymptomsexperienced);
+            var sel_NumberofCVDassociatedsymptomsexperienced = document.getElementById('div_NumberofCVDassociatedsymptomsexperienced');
+            noUiSlider.create(sel_NumberofCVDassociatedsymptomsexperienced, {
                 connect: true,
                 start: [0, 6],
                 step: 1,
@@ -567,13 +545,53 @@
                 max: 6
                 }
             });
-            sel_NumberofCVDcomorbidSymptoms.noUiSlider.on('update', function (values) {
+            sel_NumberofCVDassociatedsymptomsexperienced.noUiSlider.on('update', function (values) {
             filterVals =[];
             for (value in values){
             filterVals.push(parseInt(value))
             }
-            val_NumberofCVDcomorbidSymptoms = document.getElementById('val_NumberofCVDcomorbidSymptoms');
-            val_NumberofCVDcomorbidSymptoms.innerHTML = values.join(' - ');
+            val_NumberofCVDassociatedsymptomsexperienced = document.getElementById('val_NumberofCVDassociatedsymptomsexperienced');
+            val_NumberofCVDassociatedsymptomsexperienced.innerHTML = values.join(' - ');
+                filterFunc()
+            });
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_NumberofCVDcomorbidsymptomsexperienced = document.createElement("div");
+            div_NumberofCVDcomorbidsymptomsexperienced.id = "div_NumberofCVDcomorbidsymptomsexperienced";
+            div_NumberofCVDcomorbidsymptomsexperienced.className = "slider";
+            document.getElementById("menu").appendChild(div_NumberofCVDcomorbidsymptomsexperienced);
+            var lab_NumberofCVDcomorbidsymptomsexperienced = document.createElement('div');
+            lab_NumberofCVDcomorbidsymptomsexperienced.innerHTML  = 'Number of CVD-comorbid symptoms experienced: <span id="val_NumberofCVDcomorbidsymptomsexperienced"></span>';
+            lab_NumberofCVDcomorbidsymptomsexperienced.className = 'filterlabel';
+            document.getElementById("menu").appendChild(lab_NumberofCVDcomorbidsymptomsexperienced);
+            var reset_NumberofCVDcomorbidsymptomsexperienced = document.createElement('div');
+            reset_NumberofCVDcomorbidsymptomsexperienced.innerHTML = 'clear filter';
+            reset_NumberofCVDcomorbidsymptomsexperienced.className = 'filterlabel';
+            lab_NumberofCVDcomorbidsymptomsexperienced.className = 'filterlabel';
+            reset_NumberofCVDcomorbidsymptomsexperienced.onclick = function() {
+                sel_NumberofCVDcomorbidsymptomsexperienced.noUiSlider.reset();
+            };
+            document.getElementById("menu").appendChild(reset_NumberofCVDcomorbidsymptomsexperienced);
+            var sel_NumberofCVDcomorbidsymptomsexperienced = document.getElementById('div_NumberofCVDcomorbidsymptomsexperienced');
+            noUiSlider.create(sel_NumberofCVDcomorbidsymptomsexperienced, {
+                connect: true,
+                start: [0, 8],
+                step: 1,
+                format: wNumb({
+                    decimals: 0,
+                    }),
+                range: {
+                min: 0,
+                max: 8
+                }
+            });
+            sel_NumberofCVDcomorbidsymptomsexperienced.noUiSlider.on('update', function (values) {
+            filterVals =[];
+            for (value in values){
+            filterVals.push(parseInt(value))
+            }
+            val_NumberofCVDcomorbidsymptomsexperienced = document.getElementById('val_NumberofCVDcomorbidsymptomsexperienced');
+            val_NumberofCVDcomorbidsymptomsexperienced.innerHTML = values.join(' - ');
                 filterFunc()
             });
             document.getElementById("menu").appendChild(
@@ -597,10 +615,10 @@
             var sel_Distance = document.getElementById('div_Distance');
             noUiSlider.create(sel_Distance, {
                 connect: true,
-                start: [23.02609801, 993.8375196],
+                start: [18.08134688, 1396.71198],
                 range: {
-                min: 23.02609801,
-                max: 993.8375196
+                min: 18.08134688,
+                max: 1396.71198
                 }
             });
             sel_Distance.noUiSlider.on('update', function (values) {
@@ -685,16 +703,17 @@
             sel_FamilyHistory.id = "sel_FamilyHistory";
             var FamilyHistory_options_str = "<option value='' unselected></option>";
             sel_FamilyHistory.onchange = function(){filterFunc()};
-            FamilyHistory_options_str  += '<option value="Arthritis">Arthritis</option>';
+            FamilyHistory_options_str  += '<option value="Arthrithis">Arthrithis</option>';
             FamilyHistory_options_str  += '<option value="Cardiovascular Disease Only">Cardiovascular Disease Only</option>';
+            FamilyHistory_options_str  += '<option value="Cardiovascular Diseases, Respiratory Disease">Cardiovascular Diseases, Respiratory Disease</option>';
             FamilyHistory_options_str  += '<option value="Diabetes Only">Diabetes Only</option>';
-            FamilyHistory_options_str  += '<option value="Diabetes, Cardiovascular Disease">Diabetes, Cardiovascular Disease</option>';
+            FamilyHistory_options_str  += '<option value="Diabetes, Cardiovascular Diseases">Diabetes, Cardiovascular Diseases</option>';
+            FamilyHistory_options_str  += '<option value="Gastric Disorder">Gastric Disorder</option>';
             FamilyHistory_options_str  += '<option value="Hypertension">Hypertension</option>';
-            FamilyHistory_options_str  += '<option value="Mental Disorder">Mental Disorder</option>';
             FamilyHistory_options_str  += '<option value="None">None</option>';
             FamilyHistory_options_str  += '<option value="Respiratory Disease Only">Respiratory Disease Only</option>';
-            FamilyHistory_options_str  += '<option value="Respiratory Disease, Cardiovascular Disease">Respiratory Disease, Cardiovascular Disease</option>';
             FamilyHistory_options_str  += '<option value="Respiratory Disease, Diabetes">Respiratory Disease, Diabetes</option>';
+            FamilyHistory_options_str  += '<option value="Respiratory Disease, Diabetes, Cardiovascular Diseases">Respiratory Disease, Diabetes, Cardiovascular Diseases</option>';
             sel_FamilyHistory.innerHTML = FamilyHistory_options_str;
             div_FamilyHistory.appendChild(sel_FamilyHistory);
             var lab_FamilyHistory = document.createElement('div');
@@ -720,13 +739,14 @@
             document.getElementById("menu").appendChild(div_PhysicalActivityperweek);
             sel_PhysicalActivityperweek = document.createElement('select');
             sel_PhysicalActivityperweek.multiple = true;
-            sel_PhysicalActivityperweek.size = 3;
+            sel_PhysicalActivityperweek.size = 4;
             sel_PhysicalActivityperweek.id = "sel_PhysicalActivityperweek";
             var PhysicalActivityperweek_options_str = "<option value='' unselected></option>";
             sel_PhysicalActivityperweek.onchange = function(){filterFunc()};
-            PhysicalActivityperweek_options_str  += '<option value="2-4 times">2-4 times</option>';
-            PhysicalActivityperweek_options_str  += '<option value="Almost never">Almost never</option>';
-            PhysicalActivityperweek_options_str  += '<option value="Once">Once</option>';
+            PhysicalActivityperweek_options_str  += '<option value="2 to 4 days a week">2 to 4 days a week</option>';
+            PhysicalActivityperweek_options_str  += '<option value="5 to 7 days a week">5 to 7 days a week</option>';
+            PhysicalActivityperweek_options_str  += '<option value="Once a week">Once a week</option>';
+            PhysicalActivityperweek_options_str  += '<option value="Very rarely or never">Very rarely or never</option>';
             sel_PhysicalActivityperweek.innerHTML = PhysicalActivityperweek_options_str;
             div_PhysicalActivityperweek.appendChild(sel_PhysicalActivityperweek);
             var lab_PhysicalActivityperweek = document.createElement('div');
@@ -815,11 +835,10 @@
             document.getElementById("menu").appendChild(div_Unhealthyfoodconsumptionperday);
             sel_Unhealthyfoodconsumptionperday = document.createElement('select');
             sel_Unhealthyfoodconsumptionperday.multiple = true;
-            sel_Unhealthyfoodconsumptionperday.size = 3;
+            sel_Unhealthyfoodconsumptionperday.size = 2;
             sel_Unhealthyfoodconsumptionperday.id = "sel_Unhealthyfoodconsumptionperday";
             var Unhealthyfoodconsumptionperday_options_str = "<option value='' unselected></option>";
             sel_Unhealthyfoodconsumptionperday.onchange = function(){filterFunc()};
-            Unhealthyfoodconsumptionperday_options_str  += '<option value="0">0</option>';
             Unhealthyfoodconsumptionperday_options_str  += '<option value="1-2">1-2</option>';
             Unhealthyfoodconsumptionperday_options_str  += '<option value="3-4">3-4</option>';
             sel_Unhealthyfoodconsumptionperday.innerHTML = Unhealthyfoodconsumptionperday_options_str;
@@ -884,7 +903,7 @@
             var SmokesCigarettes_options_str = "<option value='' unselected></option>";
             sel_SmokesCigarettes.onchange = function(){filterFunc()};
             SmokesCigarettes_options_str  += '<option value="No">No</option>';
-            SmokesCigarettes_options_str  += '<option value="Often/Regularly">Often/Regularly</option>';
+            SmokesCigarettes_options_str  += '<option value="Regularly">Regularly</option>';
             SmokesCigarettes_options_str  += '<option value="Sometimes">Sometimes</option>';
             sel_SmokesCigarettes.innerHTML = SmokesCigarettes_options_str;
             div_SmokesCigarettes.appendChild(sel_SmokesCigarettes);
@@ -907,6 +926,16 @@
             getBounds: function () {
                 return this._bounds;
             }
+        });
+        resetLabels([layer_RiskLevelbyGeographicalLocation_4]);
+        map.on("zoomend", function(){
+            resetLabels([layer_RiskLevelbyGeographicalLocation_4]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_RiskLevelbyGeographicalLocation_4]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_RiskLevelbyGeographicalLocation_4]);
         });
         </script>
     </body>
